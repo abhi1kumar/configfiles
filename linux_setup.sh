@@ -2,6 +2,7 @@ HOME_PERM=/sensei-fs-3/users/abhinakumar/
 PROJECT_PERM=$HOME_PERM  # This could be same or different
 
 cd ~
+ln -sfn $HOME_PERM home_perm
 ln -sfn $HOME_PERM/.bashrc .bashrc
 ln -sfn $HOME_PERM/.bash_history .bash_history
 ln -sfn $HOME_PERM/.vscode-server .vscode-server
