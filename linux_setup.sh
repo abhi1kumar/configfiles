@@ -19,3 +19,17 @@ ln -sfn /gpfs-volume/.cache .cache
 # Update and install basic softwares
 sudo apt-get update
 sudo apt-get install curl ffmpeg git htop screen tmux unzip vim zip -y
+
+# Setup Conda
+cd ~
+wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+bash Miniconda3-latest-Linux-x86_64.sh
+source ~/.bashrc
+
+conda create -n ftp python=3.10 -y
+conda activate ftp
+conda install conda-forge::rsync -y
+conda deactivate
+
+conda create -n da3 python=3.12 -y
+conda activate da3
