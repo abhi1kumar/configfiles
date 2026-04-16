@@ -1,5 +1,5 @@
-HOME_PERM=/gpfs-volume/
-PROJECT_PERM=/group-volume/Img-Eval/a.kumar4/project
+HOME_PERM=/sensei-fs-3/users/abhinakumar/
+PROJECT_PERM=$HOME_PERM  # This could be same or different
 
 cd ~
 ln -sfn $HOME_PERM/.bashrc .bashrc
