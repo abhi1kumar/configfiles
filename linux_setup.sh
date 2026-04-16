@@ -14,7 +14,7 @@ ln -sfn $HOME_PERM/ssh .ssh
 ln -sfn $HOME_PERM/.bash_profile .bash_profile
 
 rm -rf .cache
-ln -sfn /gpfs-volume/.cache .cache
+ln -sfn $HOME_PERM/.cache .cache
 
 # Update and install basic softwares
 sudo apt-get update
