@@ -3,19 +3,20 @@ PROJECT_PERM=$HOME_PERM  # This could be same or different
 
 cd ~
 ln -sfn $HOME_PERM home_perm
-ln -sfn $HOME_PERM/.bashrc .bashrc
-ln -sfn $HOME_PERM/.bash_history .bash_history
-ln -sfn $HOME_PERM/.vscode-server .vscode-server
 ln -sfn $PROJECT_PERM project
+
+ln -sfn home_perm/.bashrc .bashrc
+ln -sfn home_perm/.bash_history .bash_history
+ln -sfn home_perm/.vscode-server .vscode-server
 
 # SSH and Bash_profile
 rm -rf .ssh
 rm .bash_profile
-ln -sfn $HOME_PERM/ssh .ssh
-ln -sfn $HOME_PERM/.bash_profile .bash_profile
+ln -sfn home_perm/ssh .ssh
+ln -sfn home_perm/.bash_profile .bash_profile
 
 rm -rf .cache
-ln -sfn $HOME_PERM/.cache .cache
+ln -sfn home_perm/.cache .cache
 
 # Update and install basic softwares
 sudo apt-get update
