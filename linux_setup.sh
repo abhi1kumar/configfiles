@@ -12,11 +12,13 @@ ln -sfn home_perm/.vscode-server .vscode-server
 # SSH and Bash_profile
 rm -rf .ssh
 rm .bash_profile
-ln -sfn home_perm/ssh .ssh
+ln -sfn home_perm/.ssh .ssh
+ln -sfn home_perm/.aws .aws
 ln -sfn home_perm/.bash_profile .bash_profile
 
-rm -rf .cache
-ln -sfn home_perm/.cache .cache
+# Use the same cache
+# rm -rf .cache
+# ln -sfn home_perm/.cache .cache
 
 # Update and install basic softwares
 sudo apt-get update
