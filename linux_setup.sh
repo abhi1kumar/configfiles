@@ -7,7 +7,7 @@ ln -sfn $PROJECT_PERM project
 
 ln -sfn home_perm/.bashrc .bashrc
 ln -sfn home_perm/.bash_history .bash_history
-ln -sfn home_perm/.vscode-server .vscode-server
+ln -sfn home_perm/.vscode .vscode-server
 
 # SSH and Bash_profile
 rm -rf .ssh
