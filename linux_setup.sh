@@ -1,5 +1,5 @@
 HOME_PERM=/sensei-fs-3/users/abhinakumar/
-PROJECT_PERM=$HOME_PERM  # This could be same or different
+PROJECT_PERM=$HOME_PERM/project  # This could be same or different
 
 cd ~
 ln -sfn $HOME_PERM home_perm
