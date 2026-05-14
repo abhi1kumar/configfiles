@@ -25,14 +25,14 @@
 
 ```python
 def foo():
-"""
-<4 space>Function Description
-"""
+<4 space>"""
+<4 space><4 space>Function Description
+<4 space>"""
 ```
 
 In other words, the function description should be 4 characters further inside the triple quotes block
 
-- The triple quotes should be aligned with 'd' of def.
+- The triple quotes should be aligned with the `f` of `foo`.
 
 
 # Spacings
