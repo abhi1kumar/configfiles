@@ -33,15 +33,15 @@
 ```python
 def foo():
 <4 space>"""
-<4 space><4 space>Function Description. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
-<4 space><4 space>Args:
-<4 space><4 space><4 space>arg1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
-<4 space><4 space><4 space>arg2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
-<4 space><4 space>Returns:
-<4 space><4 space><4 space>output1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
-<4 space><4 space><4 space>output2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
-<4 space><4 space>Raises:
-<4 space><4 space><4 space>Error: Small Explanation (example: ConnectionError: If no available port is found).
+<8 space>Function Description. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
+<8 space>Args:
+<12 space>arg1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<12 space>arg2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<8 space>Returns:
+<12 space>output1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<12 space>output2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<8 space>Raises:
+<12 space>Error: Small Explanation (example: ConnectionError: If no available port is found).
 <4 space>"""
 ```
 
