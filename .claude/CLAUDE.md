@@ -87,3 +87,15 @@ parser = argparse.ArgumentParser()
 - Provide a small explanation of all arguments
 - Do not use `required=True` unless absolutely necessary
 - Do not overflow argparse args to 2 lines unless necessary
+- The individual rows in argparse arguments should be filled with spaces.
+
+```python
+parser.add_argument("--out"                    , default="output/sdf_overfit", help="Output directory")
+parser.add_argument("--mc_resolution", type=int, default=128                 , help="MC voxel grid resolution")
+```
+instead of
+
+```python
+parser.add_argument("--out", default="output/sdf_overfit", help="Output directory")
+parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel grid resolution")
+```
