@@ -1,4 +1,11 @@
-# Comments
+# General
+
+- Always display the command you are running
+- 
+
+# Code Style
+
+## Comments
 
 - The top line of any python file should be as follows:
 
@@ -35,7 +42,7 @@ In other words, the function description should be 4 characters further inside t
 - The triple quotes should be aligned with the `f` of `foo`.
 
 
-# Spacings
+## Spacings
 
 - Put space between return and last line
 - Make function arguments on one line similar def name(a: torch. Tensor, b: torch.Tensor) -> torch.Float. When they exceed the limit of 100 characters, move the remaining arguments down.
@@ -43,7 +50,7 @@ In other words, the function description should be 4 characters further inside t
 - Fix space between functions as 1 line
 - Fix space between functions as 1 line after return
 
-# Argparse arguments
+## Argparse arguments
 
 - Provide a default value for all arguments
 - Provide a small explanation of all arguments
