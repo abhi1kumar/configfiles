@@ -50,6 +50,23 @@ The function description should be 4 characters further inside the triple quotes
 - The triple quotes should be aligned with the `f` of `foo`.
 
 
+- Provide comment before `main()` function as
+
+```python
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+```
+
+- Provide comment before `argparse`
+
+```python
+# ---------------------------------------------------------------------------
+# Argument parsing
+# ---------------------------------------------------------------------------
+parser = argparse.ArgumentParser()
+```
+
 ## Spacings
 
 - Put space between return and last line
