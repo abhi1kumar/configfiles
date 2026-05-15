@@ -45,10 +45,9 @@ def foo():
 <4 space>"""
 ```
 
-The function description should be 4 characters further inside the triple quotes block
-
+- In function docstring Args and Returns blocks, pad argument names with spaces before the colon so all descriptions start at the same column. The column is determined by the longest name in that block.
+- The function description should be 4 characters further inside the triple quotes block
 - The triple quotes should be aligned with the `f` of `foo`.
-
 
 - Provide comment before `main()` function as
 
@@ -67,6 +66,12 @@ The function description should be 4 characters further inside the triple quotes
 parser = argparse.ArgumentParser()
 ```
 
+- Never delete existing comments when refactoring or rewriting files. Preserve all comments exactly as they are unless explicitly asked to remove them.
+-  When listing parallel items (e.g. conventions, options, mappings), align the values vertically so corresponding fields line up across rows.
+- Do not collapse multi-line function calls into a single line when rewriting. Preserve the original line breaks and indentation of function arguments.
+- Do not collapse multi-line string concatenations into a single line when rewriting. Preserve the original line breaks for long strings.
+- Never pack multiple keyword arguments onto one line when rewriting. Keep one keyword argument per line in multi-line function calls.
+
 ## Spacings
 
 - Put space between return and last line
@@ -74,6 +79,7 @@ parser = argparse.ArgumentParser()
 - No space between `# ---------------------------------------------------------------------------` and function line
 - Fix space between functions as 1 line
 - Fix space between functions as 1 line after return
+- Never inline fixed vector/tuple lists into loop headers. Always assign them to a named variable first, one entry per line.
 
 ## Argparse arguments
 
