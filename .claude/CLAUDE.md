@@ -19,7 +19,7 @@
 	instead of
 	python test/export_mesh_blender.py --input input/Objaverse-v1_49/000-050/9b99d900f8004fbe88bb5c3f08ded4de.glb
 	
-	<Function Description> This function does this this and this
+	<Function Description> This function does this this and this. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
 	<4 space> Option1 - Concise Explanation
 	<4 space> Option2 - Concise Explanation
 	...
@@ -33,11 +33,19 @@
 ```python
 def foo():
 <4 space>"""
-<4 space><4 space>Function Description
+<4 space><4 space>Function Description. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
+<4 space><4 space>Args:
+<4 space><4 space><4 space>arg1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<4 space><4 space><4 space>arg2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<4 space><4 space>Returns:
+<4 space><4 space><4 space>output1: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<4 space><4 space><4 space>output2: Small Explanation. <Type> (example: torch.Tensor / numpy.ndarray) Shape <Shape> (example: [B x C x H x W]).
+<4 space><4 space>Raises:
+<4 space><4 space><4 space>Error: Small Explanation (example: ConnectionError: If no available port is found).
 <4 space>"""
 ```
 
-In other words, the function description should be 4 characters further inside the triple quotes block
+The function description should be 4 characters further inside the triple quotes block
 
 - The triple quotes should be aligned with the `f` of `foo`.
 
