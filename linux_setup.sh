@@ -37,3 +37,23 @@ conda deactivate
 
 conda create -n da3 python=3.12 -y
 conda activate da3
+
+# Setup SSHD
+sudo mkdir -p /run/sshd 
+sudo /usr/sbin/sshd -f ~/.ssh/custom_sshd/sshd_config 
+nohup python3 ~/.ssh/custom_sshd/ws-bridge.py --port 8005 > /tmp/ws-bridge.log 2>&1 & 
+echo $! > ~/.ssh/custom_sshd/ws-bridge.pid 
+cat ~/.ssh/id_rsa.pub >> ~/.ssh/custom_sshd/authorized_keys 
+
+netstat -tlnp | grep 2222 
+netstat -tlnp | grep 8005 
+ssh -p 2222 -o StrictHostKeyChecking=no colligo@127.0.0.1 "echo ok"
+echo "https://${HOSTNAME}-8005.or2.colligo.dev"
+
+# Add to local ~/.ssh/config 
+# Host colligo-test 
+#     HostName pluto-prod-abhinakumar-devcol-coltest-1-0-8005.or2.colligo.dev 
+#     User colligo 
+#     ProxyCommand python3 "/Users/abhinav/custom_ssh_proxy/ssh-tunnel-access-main/ws-proxy.py" wss://%h
+#     StrictHostKeyChecking no
+#     UserKnownHostsFile /dev/null 
