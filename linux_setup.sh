@@ -75,6 +75,10 @@ if [ "$PATHS" = true ] ; then
     # Use the same cache
     # rm -rf .cache
     # ln -sfn home_perm/.cache .cache
+
+    # Set Claude
+    curl -fsSL https://claude.ai/install.sh | bash
+    ln -sfn ~/project/configfiles/CLAUDE.md .claude/CLAUDE.md
 fi
 
 # ---------------------------------------------------------------------------
