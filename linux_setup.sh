@@ -109,7 +109,8 @@ if [ "$SSHD" = true ] ; then
     sudo /usr/sbin/sshd -f ~/.ssh/custom_sshd/sshd_config
     nohup python3 ~/.ssh/custom_sshd/ws-bridge.py --port 8005 > /tmp/ws-bridge.log 2>&1 &
     echo $! > ~/.ssh/custom_sshd/ws-bridge.pid
-    cat ~/.ssh/id_rsa.pub >> ~/.ssh/custom_sshd/authorized_keys
+    # Add public key to authorized_keys only if not already present to avoid duplicates
+    grep -qxF "$(cat ~/.ssh/id_rsa.pub)" ~/.ssh/custom_sshd/authorized_keys || cat ~/.ssh/id_rsa.pub >> ~/.ssh/custom_sshd/authorized_keys
 
     netstat -tlnp | grep 2222
     netstat -tlnp | grep 8005
