@@ -99,3 +99,41 @@ instead of
 parser.add_argument("--out", default="output/sdf_overfit", help="Output directory")
 parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel grid resolution")
 ```
+
+
+  ## Shell Scripts
+
+  - The top of any executable shell script should have a Sample Run header using `#` comments:
+
+  ```bash
+  # Sample Run:
+  # bash script.sh --flag1
+  # bash script.sh --flag2
+  # bash script.sh --flag1 --flag2
+  #
+  # <Description of what the script does>
+  #     --flag1  - Concise explanation
+  #     --flag2  - Concise explanation
+  ```
+
+  - Split shell scripts into flag-gated sections using getopt, mirroring the TRELLIS.2/setup.sh pattern:
+
+  ```bash
+  TEMP=`getopt -o h --long help,flag1,flag2 -n 'script.sh' -- "$@"`
+  eval set -- "$TEMP"
+  FLAG1=false
+  FLAG2=false
+  while true ; do
+      case "$1" in
+          --flag1 ) FLAG1=true ; shift ;;
+          --flag2 ) FLAG2=true ; shift ;;
+          --      ) shift ; break ;;
+      esac
+  done
+  if [ "$FLAG1" = true ] ; then
+      ...
+  fi
+  ```
+
+  - Align case statement entries so flag names, ), assignments, and shift line up vertically across all rows.
+  - Use the same # --------------------------------------------------------------------------- section dividers as Python for major blocks inside shell scripts.
