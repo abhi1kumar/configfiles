@@ -136,4 +136,4 @@ parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel gri
   ```
 
   - Align case statement entries so flag names, ), assignments, and shift line up vertically across all rows.
-  - Use the same # --------------------------------------------------------------------------- section dividers as Python for major blocks inside shell scripts.
+  - Use the same `# ---------------------------------------------------------------------------` section dividers as Python for major blocks inside shell scripts.
