@@ -1,9 +1,30 @@
 # Path ~/.bashrc
 
-# For macs
+# For macs (Note: macOS native ls uses -G instead of --color)
 export CLICOLOR=1
 
-# enable color support of ls and also add handy aliases
+# ==================================================================================================
+# History
+# ==================================================================================================
+# Don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# Append to the history file, don't overwrite it
+shopt -s histappend
+
+# Increase history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=10000
+HISTFILESIZE=20000
+
+# ================================================================================================== 
+# Aliases Defintions & Functions
+# ==================================================================================================
+# You may want to put all your additions into a separate file like
+# ~/.bash_aliases, instead of adding them here directly.
+# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+
+# Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
@@ -15,27 +36,50 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# Navigation
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ~='cd ~'
+alias -- -='cd -'        # Go back to previous directory
+alias project="cd project"
+
+# Listing
 alias ll='ls -alF'
+alias lt='ls -ltr'         # List by time, newest last
 alias la='ls -A'
 alias l='ls -CF'
 
-# WandB and HF setup
-export WANDB_API_KEY=xxx
-export HF_HOME=/group-volume/datasets/
-export HF_TOKEN=xxx
+# cd + ls in one command
+function cl() {
+  cd "$1" && ls -la
+}
 
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
+# Copy to clipboard
+alias clipboard='xclip -selection clipboard'
+
+# Reload shell config after editing
+alias reload='source ~/.bashrc'
+
+# Claude
+alias claude='claude --permission-mode auto'
+
+# SSH / Server Aliases
 alias cvl1="ssh -X -t kumarab6@cvl1.cse.msu.edu 'tmux attach -d || tmux'"
 alias cvl2="ssh -X -t kumarab6@cvl2.cse.msu.edu 'tmux attach -d || tmux'"
 alias cvl3="ssh -X -t kumarab6@cvl3.cse.msu.edu 'tmux attach -d || tmux'"
 alias cvl4="ssh -X -t kumarab6@cvl4.cse.msu.edu 'tmux attach -d || tmux'"
 alias cvl5="ssh -X -t kumarab6@cvl5.cse.msu.edu 'tmux attach -d || tmux'"
-alias project="cd project"
 
+# ==================================================================================================
+# WandB and HF setup
+# ==================================================================================================
+export WANDB_API_KEY=xxx
+export HF_HOME=/group-volume/datasets/
+export HF_TOKEN=xxx
+
+# ==================================================================================================
+# Conda setup
+# ==================================================================================================
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/abhinav/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -51,5 +95,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# ==================================================================================================
+# Navigate to folder
+# ==================================================================================================
 conda activate gsplat
 cd ~/project/gsplat
