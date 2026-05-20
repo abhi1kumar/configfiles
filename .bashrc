@@ -82,21 +82,26 @@ export HF_TOKEN=xxx
 # ==================================================================================================
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/abhinav/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/abhinav/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/home/abhinav/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/abhinav/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/abhinav/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/abhinav/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/home/abhinav/anaconda3/bin:$PATH"
+        export PATH="/home/abhinav/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# Alternate, works on server
+# eval "$(/home/abhinav/miniconda3/bin/conda shell.bash hook)"
+
 # ==================================================================================================
 # Navigate to folder
 # ==================================================================================================
+aws_bucket=s3://foundry-disney-mickey-mouse-adobe-assets
+
 conda activate gsplat
 cd ~/project/gsplat
