@@ -7,7 +7,6 @@ export CLICOLOR=1
 # History
 # ==================================================================================================
 # Don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
 HISTCONTROL=ignoreboth
 
 # Append to the history file, don't overwrite it
@@ -40,12 +39,12 @@ fi
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ~='cd ~'
-alias -- -='cd -'        # Go back to previous directory
-alias project="cd project"
+alias -- -='cd -'            # Go back to previous directory
+alias project='cd ~/project'
 
 # Listing
-alias ll='ls -alF'
-alias lt='ls -ltr'         # List by time, newest last
+alias ll='ls -alFh'
+alias lt='ls -ltr'           # List by time, newest last
 alias la='ls -A'
 alias l='ls -CF'
 
