@@ -64,11 +64,12 @@ alias reload='source ~/.bashrc'
 alias claude='claude --permission-mode auto'
 
 # SSH / Server Aliases
-alias cvl1="ssh -X -t kumarab6@cvl1.cse.msu.edu 'tmux attach -d || tmux'"
-alias cvl2="ssh -X -t kumarab6@cvl2.cse.msu.edu 'tmux attach -d || tmux'"
-alias cvl3="ssh -X -t kumarab6@cvl3.cse.msu.edu 'tmux attach -d || tmux'"
-alias cvl4="ssh -X -t kumarab6@cvl4.cse.msu.edu 'tmux attach -d || tmux'"
-alias cvl5="ssh -X -t kumarab6@cvl5.cse.msu.edu 'tmux attach -d || tmux'"
+# Launch tmux in session 0 if session exists, else create new tmux session
+alias cvl1="ssh -X -t kumarab6@cvl1.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias cvl2="ssh -X -t kumarab6@cvl2.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias cvl3="ssh -X -t kumarab6@cvl3.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias cvl4="ssh -X -t kumarab6@cvl4.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias cvl5="ssh -X -t kumarab6@cvl5.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
 
 # ==================================================================================================
 # WandB and HF setup
