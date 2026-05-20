@@ -3,7 +3,9 @@
 - Always display the command you are running
 - 
 
-# Code Style
+---
+
+# Python
 
 ## Comments
 
@@ -100,40 +102,102 @@ parser.add_argument("--out", default="output/sdf_overfit", help="Output director
 parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel grid resolution")
 ```
 
+---
 
-  ## Shell Scripts
+# Shell Scripts
 
-  - The top of any executable shell script should have a Sample Run header using `#` comments:
+- The top of any executable shell script should have a Sample Run header using `#` comments:
 
-  ```bash
-  # Sample Run:
-  # bash script.sh --flag1
-  # bash script.sh --flag2
-  # bash script.sh --flag1 --flag2
-  #
-  # <Description of what the script does>
-  #     --flag1  - Concise explanation
-  #     --flag2  - Concise explanation
-  ```
+```bash
+#     Sample Run:
+#     bash script.sh --flag1
+#     bash script.sh --flag2
+#     bash script.sh --flag1 --flag2
+#
+#     <Description of what the script does>
+#         --flag1  - Concise explanation
+#         --flag2  - Concise explanation
+```
 
-  - Split shell scripts into flag-gated sections using getopt, mirroring the TRELLIS.2/setup.sh pattern:
+- Split shell scripts into flag-gated sections using getopt, mirroring the TRELLIS.2/setup.sh pattern:
 
-  ```bash
-  TEMP=`getopt -o h --long help,flag1,flag2 -n 'script.sh' -- "$@"`
-  eval set -- "$TEMP"
-  FLAG1=false
-  FLAG2=false
-  while true ; do
-      case "$1" in
-          --flag1 ) FLAG1=true ; shift ;;
-          --flag2 ) FLAG2=true ; shift ;;
-          --      ) shift ; break ;;
-      esac
-  done
-  if [ "$FLAG1" = true ] ; then
-      ...
-  fi
-  ```
+```bash
+TEMP=`getopt -o h --long help,flag1,flag2 -n 'script.sh' -- "$@"`
+eval set -- "$TEMP"
+FLAG1=false
+FLAG2=false
+while true ; do
+    case "$1" in
+        --flag1 ) FLAG1=true ; shift ;;
+        --flag2 ) FLAG2=true ; shift ;;
+        --      ) shift ; break ;;
+    esac
+done
+if [ "$FLAG1" = true ] ; then
+    ...
+fi
+```
 
-  - Align case statement entries so flag names, ), assignments, and shift line up vertically across all rows.
-  - Use the same `# ---------------------------------------------------------------------------` section dividers as Python for major blocks inside shell scripts.
+- Align case statement entries so flag names, ), assignments, and shift line up vertically across all rows.
+- Use the same `# ---------------------------------------------------------------------------` section dividers as Python for major blocks inside shell scripts.
+
+---
+
+# Visualization Demos
+
+## Required Files
+
+- Every demo must have `index.html` and `manifest.json` in the same S3 folder.
+- `manifest.json` lists all scenes and their per-column mesh paths. Keep it in sync with `index.html`.
+- After updating either file locally, push to both S3 and git.
+
+## Layout
+- First Row: <Method> Comparison
+- Second Row: <-- Prev | Page 1/#Pages (Num Scenes) | Next | Add Scene                                                  Compare <Method1> (let user choose) vs <Method 2> (let user choose)   Rotation On (Default) or Off | Reset | Metric (Metric 1) | Worst --> Best (Default) or (Best --> Worst) | Arrange by < Method 1> (let user choose)
+- Third Row: Scene  | Ground Truth | <Method1> | <Method 2> Columns represent methods (e.g., GT, colligo, TRELLIS.2, PowerFoam).
+- Fourth Row: Dataset Statistics |  | <Method 1> Dataset Statistics | <Method 2> Dataset Statistics 
+Dataset statistics below the method name with all metrics
+- Rows represent scenes/objects. List most important or largest variant first (e.g., 10k before 5k).
+- Use Company color
+
+## Viewer Behavior
+  
+- Viewer should display selected / all metric values and triangles count 
+- All columns must **autorotate in sync** using a shared `performance.now()`-based theta:
+```js 
+const ROTATE_SPEED  = 0.008 * 60 / 1000;   // rad/ms  (colligo viewer)
+let rotateStartWall  = performance.now();  
+let rotateStartTheta = Math.PI / 6;
+function getSharedTheta() {
+return autoRotate
+    ? rotateStartTheta + (performance.now() - rotateStartWall) * ROTATE_SPEED
+    : rotateStartTheta;
+}   
+function freezeSharedTheta() {
+rotateStartTheta = getSharedTheta();
+rotateStartWall  = performance.now();
+}
+```
+- Call `freezeSharedTheta()` at the top of `toggleAutoRotate()` (before flipping the flag).
+- On pointer-down during drag: `snapshot sph.theta = getSharedTheta()`.
+- On pointer-up after drag: write `rotateStartTheta = sph.theta and reset rotateStartWall = performance.now()`.
+
+Mesh Download functionality behaviour  
+- Support right-click → "Download mesh.glb" per cell via a context menu.
+- Add `e.stopPropagation()` to the cell contextmenu listener to prevent the document-level listener from hiding the menu immediately.
+
+
+
+## S3 & URL Conventions
+  
+- S3 bucket: `foundry-disney-mickey-mouse-adobe-assets`, always use `--profile foundry`
+
+- Demo URL pattern: `https://foundry-aws-corp.adobe.io/asset/foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos/<YYYY_MM_DD_name>/index.html`
+
+- Upload HTML with explicit content-type:
+`aws s3 cp index.html s3://foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos//index.html --profile foundry --content-type text/html`
+
+- Upload GLB meshes:
+`aws s3 cp / s3://foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos// --profile foundry --recursive --include "*.glb"`
+
+- **Never overwrite a previous demo.** Always create a new dated folder.
