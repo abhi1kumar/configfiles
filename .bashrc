@@ -1,4 +1,6 @@
 # Path ~/.bashrc
+# Reference: https://github.com/abhi1kumar/configfiles/.bashrc
+# Abhinav Kumar
 
 # For macs (Note: macOS native ls uses -G instead of --color)
 export CLICOLOR=1
@@ -69,6 +71,14 @@ alias cvl2="ssh -X -t kumarab6@cvl2.cse.msu.edu 'tmux attach -d -t 0 || tmux new
 alias cvl3="ssh -X -t kumarab6@cvl3.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
 alias cvl4="ssh -X -t kumarab6@cvl4.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
 alias cvl5="ssh -X -t kumarab6@cvl5.cse.msu.edu 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias da3="ssh -X -t colligo@pluto-prod-abhinakumar-da3-0 'tmux attach -d -t 0 || tmux new-session -s 0'"
+alias coltest="ssh -X -t colligo-test 'tmux attach -d -t 0 || tmux new-session -s 0'"
+
+# Softwares
+alias python='/usr/local/bin/python3.10'
+alias pip='/usr/local/bin/pip3.10'
+alias meld='meld_script(){ /Applications/Meld.app/Contents/MacOS/Meld $* 2>/dev/null & };meld_script'
+alias aip="python -m colligo.pluto.sdk.cli"
 
 # ==================================================================================================
 # WandB and HF setup
