@@ -109,17 +109,17 @@ parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel gri
 - The top of any executable shell script should have a Sample Run header using `#` comments:
 
 ```bash
-#     Sample Run:
-#     bash script.sh --flag1
-#     bash script.sh --flag2
-#     bash script.sh --flag1 --flag2
+#   Sample Run:
+#   bash script.sh --flag1
+#   bash script.sh --flag2
+#   bash script.sh --flag1 --flag2
 #
-#     <Description of what the script does>
-#         --flag1  - Concise explanation
-#         --flag2  - Concise explanation
+#   <Description of what the script does>
+#       --flag1  - Concise explanation
+#       --flag2  - Concise explanation
 ```
 
-- Split shell scripts into flag-gated sections using getopt, mirroring the TRELLIS.2/setup.sh pattern:
+- Split shell scripts into flag-gated sections using getopt, mirroring the [TRELLIS.2/setup.sh](https://raw.githubusercontent.com/microsoft/TRELLIS.2/refs/heads/main/setup.sh) pattern:
 
 ```bash
 TEMP=`getopt -o h --long help,flag1,flag2 -n 'script.sh' -- "$@"`
@@ -161,7 +161,8 @@ Dataset statistics below the method name with all metrics
 - Use Company color
 
 ## Viewer Behavior
-  
+
+- 3D Viewer should render double-sided triangles so that no matter which angle you’re looking from you see the mesh.  
 - Viewer should display selected / all metric values and triangles count 
 - All columns must **autorotate in sync** using a shared `performance.now()`-based theta:
 ```js 
