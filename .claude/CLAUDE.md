@@ -13,20 +13,20 @@
 
 ```python
 """
-	Sample Run:  # Sample Run is optional. Use only when the function is executable
-	python <file name> --input_arg1 arg1 --output_arg arg2
+<4 space>Sample Run:  # Sample Run is optional. Use only when the function is executable
+<4 space>python <file name> --input_arg1 arg1 --output_arg arg2
 
-	The arg1 should be small as possible to accomodate multiple arguments
-	python test/export_mesh_blender.py --input input/obja_mesh.glb
-	instead of
-	python test/export_mesh_blender.py --input input/Objaverse-v1_49/000-050/9b99d900f8004fbe88bb5c3f08ded4de.glb
+<4 space>The arg1 should be small as possible to accomodate multiple arguments
+<4 space>python test/export_mesh_blender.py --input input/obja_mesh.glb
+<4 space>instead of
+<4 space>python test/export_mesh_blender.py --input input/Objaverse-v1_49/000-050/9b99d900f8004fbe88bb5c3f08ded4de.glb
 	
-	<Function Description> This function does this this and this. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
-	<4 space> Option1 - Concise Explanation
-	<4 space> Option2 - Concise Explanation
-	...
-	
-	Abhinav Kumar, <Date>
+<4 space><Function Description> This function does this this and this. If this is a multi-stage pipeline, use → to show the major blocks. If there is any alternative pipeline, show the alternative pathway with dashes.
+<8 space> Option1 - Concise Explanation
+<8 space> Option2 - Concise Explanation
+<4 space>...
+
+<4 space>Abhinav Kumar, <Date>
 """
 ```
 
