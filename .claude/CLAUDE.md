@@ -126,6 +126,27 @@ parser.add_argument("--out", default="output/sdf_overfit", help="Output director
 parser.add_argument("--mc_resolution", type=int, default=128, help="MC voxel grid resolution")
 ```
 
+## Misc
+- Always use keyword arguments in Function calls
+
+```
+  # preferred
+  render_target_views(
+      model       = model,
+      gaussian_0  = gaussian_0,
+      target_dict = target_dict,
+      num_input   = args.num_input,
+      height      = height,
+      width       = width,
+  )
+  # not
+  render_target_views(model, gaussian_0, target_dict, args.num_input, height, width)
+```
+
+- Shared utilities belong in their proper module, not the calling script
+  
+- Use existing data structures directly — avoid redundant parallel state
+  
 ---
 
 # Shell Scripts
