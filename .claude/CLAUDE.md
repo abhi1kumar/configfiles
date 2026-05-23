@@ -1,7 +1,8 @@
 # General
 
 - Always display the command you are running
-- 
+- Ask clarifying questions.
+- Do not git push or delete without asking.
 
 ---
 
@@ -50,6 +51,29 @@ def foo():
 - In function docstring Args and Returns blocks, pad argument names with spaces before the colon so all descriptions start at the same column. The column is determined by the longest name in that block.
 - The function description should be 4 characters further inside the triple quotes block
 - The triple quotes should be aligned with the `f` of `foo`.
+
+- Colon alignment across Args AND Returns: The : separating arg name from description must be at the same column in both the Args block and the Returns block of the same function (not just within each block separately). Column is determined by the longest name across all entries in the function.
+- torch.Tensor type alignment across Args AND Returns: The t in torch.Tensor (the type annotation) must start at the same column across all entries that have torch.Tensor, spanning both the Args and Returns blocks of the same function. Column is determined by the longest description among all torch-annotated entries in the function.
+  Example:
+
+```
+  Args:
+      gaussian_xyz: Gaussian positions in normalized scene space. torch.Tensor Shape [N x 3].
+      input_c2ws  : Input camera-to-world matrices.               torch.Tensor Shape [V x 4 x 4].
+      input_intr  : Input intrinsics (fx, fy, cx, cy).            torch.Tensor Shape [V x 4].
+  Returns:
+      c2ws_out    : Camera-to-world matrices for the spiral.      torch.Tensor Shape [n_frames x 4 x 4].
+      intr_out    : Intrinsics (mean of input intrinsics).        torch.Tensor Shape [n_frames x 4].
+```
+
+- Descriptions should be padded so type annotations align vertically (this applies to non-torch.Tensor types too). The description is padded with spaces so the type (torch.Tensor, int., str., etc.) starts at the same column within the block:
+
+```
+  Returns:
+      images      : RGB images normalized to [0,1]. torch.Tensor Shape [V x 3 x H x W].
+      c2ws        : Camera-to-world matrices.       torch.Tensor Shape [V x 4 x 4].
+      intr        : Intrinsics (fx, fy, cx, cy).    torch.Tensor Shape [V x 4].
+```
 
 - Provide comment before `main()` function as
 
