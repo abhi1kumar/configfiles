@@ -45,14 +45,14 @@ alias -- -='cd -'            # Go back to previous directory
 alias project='cd ~/project'
 
 # Listing
-alias ll='ls -alFh'
-alias lt='ls -ltr'           # List by time, newest last
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='ls -alhF'          # Classify file as well
+alias lt='ls -lhtr'          # List by time, newest last
+alias la='ls -A'             # Almost all, exclude . and ..
+alias l='ls -CF'             # List by metadata change and classify
 
 # cd + ls in one command
 function cl() {
-  cd "$1" && ls -la
+  cd "$1" && ll
 }
 
 # Copy to clipboard
