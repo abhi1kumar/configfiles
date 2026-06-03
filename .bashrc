@@ -115,9 +115,14 @@ unset __conda_setup
 # eval "$(/home/abhinav/miniconda3/bin/conda shell.bash hook)"
 
 # ==================================================================================================
+# AWS Buckets
+# ==================================================================================================
+foundry_bucket=s3://foundry-disney-mickey-mouse-adobe-assets
+clio_bucket=s3://clio.corp.adobe.com
+dit_bucket=s3://dit-scale-up
+
+# ==================================================================================================
 # Navigate to folder
 # ==================================================================================================
-aws_bucket=s3://foundry-disney-mickey-mouse-adobe-assets
-
 conda activate gsplat
 cd ~/project/gsplat
