@@ -1,0 +1,55 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "servers",
+      "dependsOn": [
+        "Terminal1",
+        "Claude"
+      ],
+      "dependsOrder": "sequence",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Terminal1",
+      "type": "shell",
+      "command": "bash --init-file <(echo 'source ~/.bashrc; echo \"=== READY ===\"')",
+      "isBackground": true,
+      "problemMatcher": {
+        "pattern": {
+          "regexp": "."
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": ".",
+          "endsPattern": "=== READY ==="
+        }
+      },
+      "presentation": {
+        "group": "servers",
+        "panel": "dedicated",
+        "reveal": "always",
+        "focus": true
+      }
+    },
+    {
+      "label": "Claude",
+      "type": "shell",
+      "command": "bash --init-file <(echo 'source ~/.bashrc; tmux attach -d -t 0 || tmux new-session -s 0')",
+      "isBackground": true,
+      "problemMatcher": [],
+      "presentation": {
+        "group": "servers",
+        "panel": "dedicated",
+        "reveal": "always",
+        "focus": false
+      }
+    }
+  ]
+}
