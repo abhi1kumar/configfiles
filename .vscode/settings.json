@@ -25,6 +25,8 @@
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "workbench.editor.enablePreview": false,
     "workbench.startupEditor": "none",
+    // Explorer settings
+    "explorer.sortOrderLexicographicOptions": "unicode",
     // Python settings
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
