@@ -248,19 +248,10 @@ fi
 
 # Visualization Demos
 
-## Required Files
-
-- Every demo must have `index.html` and `manifest.json` in the same S3 folder.
-- `manifest.json` lists all scenes and their per-column mesh paths. Keep it in sync with `index.html`.
-- After updating either file locally, push to both S3 and git.
 
 ## Layout
 - First Row: <Method> Comparison
 - Second Row: <-- Prev | Page 1/#Pages (Num Scenes) | Next | Add Scene                                                  Compare <Method1> (let user choose) vs <Method 2> (let user choose)   Rotation On (Default) or Off | Reset | Metric (Metric 1) | Worst --> Best (Default) or (Best --> Worst) | Arrange by < Method 1> (let user choose)
-- Third Row: Scene  | Ground Truth | <Method1> | <Method 2> Columns represent methods (e.g., GT, colligo, TRELLIS.2, PowerFoam).
-- Fourth Row: Dataset Statistics |  | <Method 1> Dataset Statistics | <Method 2> Dataset Statistics 
-Dataset statistics below the method name with all metrics
-- Rows represent scenes/objects. List most important or largest variant first (e.g., 10k before 5k).
 - Use Company color
 
 ## Viewer Behavior
@@ -290,18 +281,33 @@ Mesh Download functionality behaviour
 - Support right-click → "Download mesh.glb" per cell via a context menu.
 - Add `e.stopPropagation()` to the cell contextmenu listener to prevent the document-level listener from hiding the menu immediately.
 
-
-
 ## S3 & URL Conventions
   
 - S3 bucket: `foundry-disney-mickey-mouse-adobe-assets`, always use `--profile foundry`
 
 - Demo URL pattern: `https://foundry-aws-corp.adobe.io/asset/foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos/<YYYY_MM_DD_name>/index.html`
 
-- Upload HTML with explicit content-type:
-`aws s3 cp index.html s3://foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos//index.html --profile foundry --content-type text/html`
-
-- Upload GLB meshes:
-`aws s3 cp / s3://foundry-disney-mickey-mouse-adobe-assets/abhinakumar/demos// --profile foundry --recursive --include "*.glb"`
-
 - **Never overwrite a previous demo.** Always create a new dated folder.
+
+## Google model-viewer: mesh prep & viewer gotchas
+
+### GLB export
+- **Must include a NORMAL attribute** (`vertex_normals`) — model-viewer throws "failed to load" without it, even if the mesh is valid elsewhere.
+- Bake vertex colors as **uint8**; export with `trimesh.Trimesh(..., process=False)`.
+- Content-types: GLB `model/gltf-binary`, `index.html` `text/html`, `manifest.json` `application/json`.
+- Ship a **separate local `model-viewer.min.js`** (~935 KB), loaded as `<script type="module" src="model-viewer.min.js">`. A relative `src` means you must upload the JS alongside `index.html`/`manifest.json` or meshes silently won't render.
+
+### Rendering robustness
+- **Double-sided**: `material.side = 2` (THREE.DoubleSide) so back faces show.
+- **`material.flatShading = true`** to be insensitive to flipped / inconsistently-wound triangles (kills the checkerboard) — derives the normal from screen-space derivatives; with double-sided `faceDirection` it always faces the camera.
+
+### Matching the view to a specific image
+- Confirm the mesh's **world frame**. ScanNet++ meshes are in the **COLMAP world**; nerfstudio `transforms_*.json` are in a *different, axis-swapped* world — use `colmap/images.txt` w2c, not the nerfstudio poses.
+- Orient with `R = diag(1,-1,-1) . w2c` (OpenCV->GLTF), center scene at origin, and encode the camera's off-center look via **`camera-target` on the -Z ray** (the camera rarely points at the centroid).
+- FOV from the **pinhole intrinsics**; set **`max-field-of-view`** high (default cap is 45deg) or a wide fov gets clamped.
+
+### Camera controls (model-viewer gotchas)
+- **Near plane**: model-viewer ties `near = far/1000`, which clips interiors up close. Override `scene.updateNearFar` to pin `near` small (~0.02 m) while keeping its dynamic `far`. Do NOT hijack `camera.near` via a getter — it breaks the controls.
+- **Symmetric zoom**: lock the FOV (`min-field-of-view == max-field-of-view`) so wheel-zoom is a pure radius dolly with a constant step both ways. Otherwise the step scales by fov headroom and zoom-out flies out while zoom-in crawls.
+- **Bound the zoom range**: don't leave `max-camera-orbit` radius huge (e.g. 1000 m) — you fly out and can't get back. Use a scene-scale cap (~15 m) and small min (~0.05 m); azimuth/polar `auto` for free rotation.
+- **Synced viewers**: mirror `camera-change` only when `e.detail.source === "user-interaction"`, applying `cameraOrbit/cameraTarget/fieldOfView` + `jumpCameraToGoal()` to siblings (guards feedback loops).
