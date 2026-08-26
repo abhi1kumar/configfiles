@@ -11,8 +11,12 @@
     ],
     // Debug nofocus
     "debug.focusWindowOnBreak": false,
-    "explorer.confirmDragAndDrop": false,
+    "debugpy.debugJustMyCode": false,
+    "jupyter.debugJustMyCode": false, // for jupyter cells
     "files.autoSave": "afterDelay",
+    // Explorer settings
+    "explorer.confirmDragAndDrop": false,
+    "explorer.sortOrderLexicographicOptions": "unicode",
     // Theme settings
     "workbench.colorTheme": "Visual Studio Light",
     "workbench.iconTheme": "material-icon-theme",
@@ -25,8 +29,6 @@
     "terminal.integrated.enableMultiLinePasteWarning": false,
     "workbench.editor.enablePreview": false,
     "workbench.startupEditor": "none",
-    // Explorer settings
-    "explorer.sortOrderLexicographicOptions": "unicode",
     // Python settings
     "[python]": {
         "diffEditor.ignoreTrimWhitespace": false,
