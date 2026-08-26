@@ -248,6 +248,11 @@ fi
 
 # Visualization Demos
 
+## Required Files
+
+- Every demo must have `index.html` and `manifest.json` in the same S3 folder.
+- `manifest.json` lists all scenes and their per-column mesh paths. Keep it in sync with `index.html`.
+- After updating either file locally, push to both S3 and git.
 
 ## Layout
 - First Row: <Method> Comparison
