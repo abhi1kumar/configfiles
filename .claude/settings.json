@@ -1,10 +1,4 @@
 {
-	"permissions": {
-		"defaultMode": "auto"
-	},
-	"skipDangerousModePermissionPrompt": true,
-	"skipAutoPermissionPrompt": true,
-	"theme": "light",
 	"env": {
 		"CLAUDE_CODE_USE_BEDROCK": "1",
 		"AWS_REGION": "us-west-2",
@@ -15,6 +9,13 @@
 		"ANTHROPIC_DEFAULT_HAIKU_MODEL": "us.anthropic.claude-haiku-4-5-20251001-v1:0",
 		"ANTHROPIC_MODEL": "opus",
 		"ANTHROPIC_SMALL_FAST_MODEL": "haiku"
-    }
-
+    },	
+	"permissions": {
+		"defaultMode": "auto"
+	},
+	"model": "claude-opus-4-8",
+	"skipDangerousModePermissionPrompt": true,
+	"skipAutoPermissionPrompt": true,
+	"theme": "light",
+	"tui": "fullscreen"
 }
