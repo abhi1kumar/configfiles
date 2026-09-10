@@ -316,3 +316,24 @@ Mesh Download functionality behaviour
 - **Symmetric zoom**: lock the FOV (`min-field-of-view == max-field-of-view`) so wheel-zoom is a pure radius dolly with a constant step both ways. Otherwise the step scales by fov headroom and zoom-out flies out while zoom-in crawls.
 - **Bound the zoom range**: don't leave `max-camera-orbit` radius huge (e.g. 1000 m) — you fly out and can't get back. Use a scene-scale cap (~15 m) and small min (~0.05 m); azimuth/polar `auto` for free rotation.
 - **Synced viewers**: mirror `camera-change` only when `e.detail.source === "user-interaction"`, applying `cameraOrbit/cameraTarget/fieldOfView` + `jumpCameraToGoal()` to siblings (guards feedback loops).
+
+
+---
+
+# claude-hoshyari MCP Instructions
+
+## Proactive Tool Usage
+
+Use the MCP tools automatically based on context — don't wait for the user to ask explicitly.
+
+- **Ticket or JIRA**: use `corp-jira` tools. For creating tickets, use the `hoshyari-jira` skill.
+- **Slack**: use `slack` tools.
+- **Confluence, wiki or their links**: use `adobe-wiki` tools.
+- **Excel files**: use `excel` tools. Use the `hoshyari-excel` skill for formula vs value guidance.
+- **SharePoint, OneDrive, email, calendar, meetings, transcripts, Teams**: use the `hoshyari-microsoft-365` skill.
+- **Adobe internal platforms, tools, processes, or "how does Adobe do X"**: use the `hoshyari-ada-glean` skill.
+- **git.corp.adobe.com**: see the `hoshyari-git-corp` skill for access details (proxy, certs).
+
+## General Behavior
+
+- When a user's reference is ambiguous, **ask for clarification** before taking irreversible actions.
