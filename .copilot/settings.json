@@ -1,16 +1,11 @@
 {
-    "model": "us.anthropic.claude-sonnet-5",
-    "permissions": {
-        "defaultMode": "auto",
-        "skipDangerousModePermissionPrompt": true,
-        "skipAutoPermissionPrompt": true,
-        "allowedUrls": [
-            "https://api.github.com/**",
-            "https://docs.github.com/**"
-        ]
-    },
-    "tui": {
-        "theme": "light",
-        "mode": "fullscreen"
-    }
+    "model": "claude-sonnet-5",
+    "experimental": true,
+    "defaultPermissionMode": "allow-all",
+    "allowedUrls": [
+        "https://api.github.com",
+        "https://docs.github.com",
+        "https://pluto-prod-qiminc-shape3d-pipeline-lpe5n9-0-8003.jobs.colligo.dev"
+    ],
+    "theme": "github"
 }
